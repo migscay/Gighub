@@ -178,9 +178,24 @@
     <Compile Include="Migrations\202206270207172_Init.designer.cs">
       <DependentUpon>202206270207172_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206270418452_Gig.cs" />
+    <Compile Include="Migrations\202206270418452_Gig.designer.cs">
+      <DependentUpon>202206270418452_Gig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270503274_createGigTable.cs" />
+    <Compile Include="Migrations\202206270503274_createGigTable.designer.cs">
+      <DependentUpon>202206270503274_createGigTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202206270538076_overrideConvention.cs" />
+    <Compile Include="Migrations\202206270538076_overrideConvention.designer.cs">
+      <DependentUpon>202206270538076_overrideConvention.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Gig.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -261,6 +276,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202206270207172_Init.resx">
       <DependentUpon>202206270207172_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270418452_Gig.resx">
+      <DependentUpon>202206270418452_Gig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270503274_createGigTable.resx">
+      <DependentUpon>202206270503274_createGigTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202206270538076_overrideConvention.resx">
+      <DependentUpon>202206270538076_overrideConvention.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
