@@ -18,11 +18,11 @@ namespace Gighub.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            var ViewModel = new GigFormViewModel
+            var viewModel = new GigFormViewModel
             {
                 Genres = _context.Genres.ToList()
             };
-            return View(ViewModel);
+            return View(viewModel);
         }
 
         [Authorize]

@@ -40,17 +40,17 @@ span.field-validation-error {
     border-color: #ff4342;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-    color: #fff;
-}
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
 
-.navbar-inverse .navbar-brand {
-    color: #fff;
-}
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+    }
 
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: rgba(205, 40, 39, 0.55 );
-}
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: rgba(205, 40, 39, 0.55 );
+    }
 
 .navbar-brand {
     font-weight: 700;
@@ -91,62 +91,65 @@ h6,
     border-radius: 9px;
 }
 
-.form-control:focus {
-    border-color: #2196f3;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
+    .form-control:focus {
+        border-color: #2196f3;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
 
 .btn {
+    /*
     font-size: 17px;
     padding: 7px 20px;
+    */ 
     border-radius: 9px;
 }
 
-/* Page-level styles */
+    /* Page-level styles */
 
-.gigs {
+    .gigs {
     list-style: none;
 }
 
-.gigs > li {
-    position: relative;
-    margin-bottom: 30px;
-}
+    .gigs > li {
+        position: relative;
+        margin-bottom: 30px;
+    }
 
-.gigs > li .date {
-    background: red;
-    color: white;
-    width: 60px;
-    text-align: center;
-    border-radius: 8px; 
-}
+        .gigs > li .date {
+            background: red;
+            color: white;
+            width: 60px;
+            text-align: center;
+            border-radius: 8px;
+        }
 
-.gigs > li .date .month {
-    text-transform: uppercase;
-    padding: 2px 6px;
-    font-size: 14px;
-    font-weight: bold;
-}
+            .gigs > li .date .month {
+                text-transform: uppercase;
+                padding: 2px 6px;
+                font-size: 14px;
+                font-weight: bold;
+            }
 
-.gigs > li .date .day {
-    background: #f7f7f7;
-    color: #333;
-    padding: 6px 12px;
-    font-size: 20px;
-}
+            .gigs > li .date .day {
+                background: #f7f7f7;
+                color: #333;
+                padding: 6px 12px;
+                font-size: 20px;
+            }
 
-.gigs > li .details {
-    position: absolute;
-    top: 0;
-    left: 70px;
-}
+        .gigs > li .details {
+            position: absolute;
+            top: 0;
+            left: 70px;
+        }
 
-.gigs > li .details .artist {
-    font-weight: bold;
-    display: block;
-}
+            .gigs > li .details .artist {
+                font-weight: bold;
+                display: block;
+            }
 
-.gigs > li .details .genre {
-    font-size: 15px;
-}
+            .gigs > li .details .genre {
+                font-size: 15px;
+            }
