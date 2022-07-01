@@ -9,6 +9,30 @@
     padding-right: 15px;
 }
 
+.voffset {
+    margin-top: 2px;
+}
+
+.voffset1 {
+    margin-top: 5px;
+}
+
+.voffset2 {
+    margin-top: 10px;
+}
+
+.voffset3 {
+    margin-top: 20px;
+}
+
+.voffset4 {
+    margin-top: 40px;
+}
+
+.voffset5 {
+    margin-top: 80px;
+}
+
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -33,6 +57,8 @@ span.field-validation-error {
     color: red;
     font-weight: bold;
 }
+
+
 
 /* Bootstrap overrides */
 .navbar-inverse {
@@ -102,13 +128,13 @@ h6,
     /*
     font-size: 17px;
     padding: 7px 20px;
-    */ 
+    */
     border-radius: 9px;
 }
 
-    /* Page-level styles */
+/* Page-level styles */
 
-    .gigs {
+.gigs {
     list-style: none;
 }
 
