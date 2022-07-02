@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Gighub.Models.Gig>
+﻿@using Gighub.Controllers
+@model IEnumerable<Gighub.Models.Gig>
 @{
     ViewBag.Title = "Mine";
 }
@@ -18,7 +19,79 @@
 					@gig.Venue
 				</span>
 				<span class="genre">@gig.Genre.Name</span>
+				<div class="actions">
+					<a href="@Url.Action("Edit","Gigs", new { id = gig.Id })">Edit</a>
+					|
+					<a href="#" data-gig-id="@gig.Id"
+					   class="js-cancel-gig">Cancel</a>
+				</div> 
 			</div>
 		</li>
 	}
 </ul>
+@section scripts
+{
+	<script>
+		$(document).ready(function () {
+			$(".js-cancel-gig").click(function (e) {
+
+				var link = $(e.target);
+
+                alert("Cancel button clicked on Gig " + link.attr("data-gig-id"));
+
+
+				if (confirm("Are you sure you want to Cancel this gig?")) {
+					$.ajax({
+							url: "/api/gigs/" + link.attr("data-gig-id"),
+							method: "DELETE"
+						})
+						.done(function () {
+							link.parents("li").fadeOut(function () {
+								$(this).remove();
+							});
+						})
+						.fail(function () {
+							alert("Something failed!");
+						});
+				}
+
+
+
+				/*
+				bootbox.dialog({
+                    message: "Are you sure you want to cancel this gig?" + link.Attr("data-gig-id"),
+					title: "Confirm",
+					buttons: {
+						no: {
+							label: "No",
+							className: "btn-default",
+							callback: function () {
+								bootbox.hideAll();
+							}
+						},
+						yes: {
+							label: "Yes",
+							className: "btn-danger",
+							callback: function () {
+                                alert("about to call api " + link.attr("data-gig-id"));
+								$.ajax({
+										url: "/api/gigs/" + link.attr("data-gig-id"),
+										method: "DELETE"
+									})
+									.done(function () {
+										link.parents("li").fadeOut(function () {
+											$(this).remove();
+										});
+									})
+									.fail(function () {
+										alert("Something failed!");
+									});
+							}
+						}
+					}
+				});*/
+
+			});
+		});
+	</script>
+}
