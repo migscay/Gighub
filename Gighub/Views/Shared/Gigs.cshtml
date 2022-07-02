@@ -14,7 +14,15 @@
             <div class="details">
                 <span class="artist">
                     @gig.Artist.Name
-                @if (Model.ShowActions)
+					
+                    @if (gig.IsCancelled)
+                    {
+	                    <span class="label label-warning">Cancelled</span>
+                    }
+                    	
+
+
+                    @if (Model.ShowActions)
                 {
                     <button data-user-id="@gig.ArtistId"
                             class="btn btn-link btn-sm js-toggle-following">

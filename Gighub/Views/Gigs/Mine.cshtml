@@ -53,7 +53,6 @@
 							label: "Yes",
 							className: 'btn-danger',
 							callback: function(){
-								alert("about to call api " + link.attr("data-gig-id"));
 								$.ajax({
 										url: "/api/gigs/" + link.attr("data-gig-id"),
 										method: "DELETE"
