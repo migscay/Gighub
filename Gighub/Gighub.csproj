@@ -231,9 +231,20 @@
     <Compile Include="Migrations\202207020249413_addIsCancelled.designer.cs">
       <DependentUpon>202207020249413_addIsCancelled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207030405307_AddUsernotification.cs" />
+    <Compile Include="Migrations\202207030405307_AddUsernotification.designer.cs">
+      <DependentUpon>202207030405307_AddUsernotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202207030548363_ChangeNotification.cs" />
+    <Compile Include="Migrations\202207030548363_ChangeNotification.designer.cs">
+      <DependentUpon>202207030548363_ChangeNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
+    <Compile Include="Models\Notification.cs" />
+    <Compile Include="Models\NotificationType.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -364,6 +375,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207020249413_addIsCancelled.resx">
       <DependentUpon>202207020249413_addIsCancelled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207030405307_AddUsernotification.resx">
+      <DependentUpon>202207030405307_AddUsernotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207030548363_ChangeNotification.resx">
+      <DependentUpon>202207030548363_ChangeNotification.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
