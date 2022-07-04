@@ -9,7 +9,7 @@ namespace GigHub.Controllers.Api
     [Authorize]
     public class GigsController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public GigsController()
         {

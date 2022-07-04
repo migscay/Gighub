@@ -20,6 +20,11 @@ namespace Gighub.Models
 
         public bool IsRead { get; set; }
 
+        public void Read()
+        {
+            IsRead = true;
+        }
+
         //a default constructor is required when you create a custom constructor
         protected UserNotification()
         {

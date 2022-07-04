@@ -107,6 +107,16 @@
 					},
 					placement: "bottom",
                     template: '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
+				}).on("shown.bs.popover", function () {
+					//if first time to be shown, mark notifications as Read
+                    if ($(".js-notifications-count").text() != "") {
+	                    $.post("/api/notifications/MarkAsRead")
+		                    .done(function() {
+			                    $(".js-notifications-count")
+				                    .text("")
+				                    .addClass("hide");
+		                    });
+                    };
 				});
 			});
 	});
