@@ -1,10 +1,27 @@
-﻿body {
+﻿@color_1: red;
+@color_2: #fff;
+@color_3: white;
+@color_4: #333;
+@font_family_1: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+@background_color_1: #FF4342;
+@background_color_2: #777;
+@background_color_3: rgba(205, 40, 39, 0.55);
+@border_color_1: #ff4342;
+@border_color_2: #fff;
+@border_color_3: #2196f3;
+
+
+
+
+
+
+body {
     padding-top: 80px;
     padding-bottom: 20px;
     font-size: 17px;
+    font-family: @font_family_1;
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -34,69 +51,90 @@
     margin-top: 80px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.dl-horizontal {
+    dt {
+        white-space: normal;
+    }
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
+input {
+    max-width: 280px;
+}
+
+select {
+    max-width: 280px;
+}
+
 textarea {
     max-width: 280px;
 }
 
 span.field-validation-error {
-    color: red;
+    color: @color_1;
     font-weight: bold;
 }
 
-
-
-/* Bootstrap overrides */
 .popover {
     box-shadow: none;
     -webkit-box-shadow: none;
 }
 
 .navbar-inverse {
-    background-color: #FF4342;
-    border-color: #ff4342;
-}
+    background-color: @background_color_1;
+    border-color: @border_color_1;
 
-.navbar-inverse .navbar-toggle:hover,
-.navbar-inverse .navbar-toggle:focus {
-    background-color: #777;
-    border-color: #fff
-}
+    .navbar-toggle {
+        &:hover {
+            background-color: @background_color_2;
+            border-color: @border_color_2;
+        }
 
-.navbar-inverse .navbar-nav > li > a {
-    color: #fff;
-}
+        &:focus {
+            background-color: @background_color_2;
+            border-color: @border_color_2;
+        }
+    }
 
-.navbar-inverse .navbar-brand {
-    color: #fff;
-}
+    .navbar-nav {
+        > li {
+            > a {
+                color: @color_2;
+            }
+        }
 
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-    background-color: rgba(205, 40, 39, 0.55 );
+        > .open {
+            > a {
+                background-color: @background_color_3;
+
+                &:hover {
+                    background-color: @background_color_3;
+                }
+
+                &:focus {
+                    background-color: @background_color_3;
+                }
+            }
+        }
+    }
+
+    .navbar-brand {
+        color: @color_2;
+    }
+
+    .notifications {
+        position: relative;
+
+        .badge {
+            position: absolute;
+            top: 8px;
+            right: -1px;
+            background: #a80a0a;
+        }
+    }
 }
 
 .navbar-brand {
     font-weight: 700;
-}
-
-.navbar-inverse .notifications {
-    position: relative;
-}
-
-.navbar-inverse .notifications .badge {
-    position: absolute;
-    top: 8px;
-    right: -1px;
-    background: #a80a0a;
 }
 
 .dropdown-menu {
@@ -104,22 +142,53 @@ span.field-validation-error {
     -webkit-box-shadow: none;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5,
-.h6 {
-    font-family: Lato,"Helvetica Neue", Helvetica, Arial, sans-serif;
+h1 {
+    font-family: @font_family_1;
 }
 
+h2 {
+    font-family: @font_family_1;
+}
+
+h3 {
+    font-family: @font_family_1;
+}
+
+h4 {
+    font-family: @font_family_1;
+}
+
+h5 {
+    font-family: @font_family_1;
+}
+
+h6 {
+    font-family: @font_family_1;
+}
+
+.h1 {
+    font-family: @font_family_1;
+}
+
+.h2 {
+    font-family: @font_family_1;
+}
+
+.h3 {
+    font-family: @font_family_1;
+}
+
+.h4 {
+    font-family: @font_family_1;
+}
+
+.h5 {
+    font-family: @font_family_1;
+}
+
+.h6 {
+    font-family: @font_family_1;
+}
 
 .form-group {
     margin-bottom: 20px;
@@ -129,13 +198,12 @@ h6,
     padding: 20px 15px;
     border-radius: 9px;
     height: inherit;
-}
 
-
-.form-control:focus {
-    border-color: #2196f3;
-    box-shadow: none;
-    -webkit-box-shadow: none;
+    &:focus {
+        border-color: @border_color_3;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
 }
 
 .btn {
@@ -143,64 +211,62 @@ h6,
     border-radius: 9px;
 }
 
-/* Page-level styles */
-
 .gigs {
     list-style: none;
+
+    > li {
+        position: relative;
+        margin-bottom: 30px;
+
+        .date {
+            background: red;
+            color: @color_3;
+            width: 60px;
+            text-align: center;
+            border-radius: 8px;
+
+            .month {
+                text-transform: uppercase;
+                padding: 2px 6px;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .day {
+                background: #f7f7f7;
+                color: @color_4;
+                padding: 6px 12px;
+                font-size: 20px;
+            }
+        }
+
+        .details {
+            position: absolute;
+            top: 0;
+            left: 70px;
+
+            .artist {
+                font-weight: bold;
+                display: block;
+            }
+
+            .genre {
+                font-size: 15px;
+            }
+        }
+
+        .actions {
+            font-size: 15px;
+            display: none;
+        }
+
+        &:hover {
+            .actions {
+                display: block;
+            }
+        }
+    }
 }
-
-.gigs > li {
-    position: relative;
-    margin-bottom: 30px;
-}
-
-.gigs > li .date {
-    background: red;
-    color: white;
-    width: 60px;
-    text-align: center;
-    border-radius: 8px;
-}
-
-.gigs > li .date .month {
-    text-transform: uppercase;
-    padding: 2px 6px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.gigs > li .date .day {
-    background: #f7f7f7;
-    color: #333;
-    padding: 6px 12px;
-    font-size: 20px;
-}
-
-.gigs > li .details {
-    position: absolute;
-    top: 0;
-    left: 70px;
-}
-
-.gigs > li .details .artist {
-    font-weight: bold;
-    display: block;
-}
-
-.gigs > li .details .genre {
-    font-size: 15px;
-}
-
-.gigs > li .actions {
-    font-size: 15px;
-    display: none;
-}
-
-.gigs > li:hover .actions {
-    display: block;
-}
-
-
 
 .popover-notifications {
     .popover-content {
@@ -214,10 +280,10 @@ h6,
         li {
             border-bottom: 1px solid #ddd;
             padding: 10px;
-        }
 
-        li:last-child {
-            border-bottom: none;
+            &:last-child {
+                border-bottom: none;
+            }
         }
 
         .highlight {
