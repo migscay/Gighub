@@ -25,7 +25,7 @@ namespace GigHub.Controllers.Api
                 .Select(a => a.Attendee))
                 .Single(g => g.Id == id && g.ArtistId == userId);
 
-            if (gig.IsCancelled)
+            if (gig.IsCanceled)
                 return NotFound();
 
             gig.Cancel();

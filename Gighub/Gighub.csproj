@@ -230,6 +230,10 @@
     <Compile Include="Migrations\202207030548363_ChangeNotification.designer.cs">
       <DependentUpon>202207030548363_ChangeNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202207052037020_renamedIsCancelled.cs" />
+    <Compile Include="Migrations\202207052037020_renamedIsCancelled.designer.cs">
+      <DependentUpon>202207052037020_renamedIsCancelled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Following.cs" />
@@ -374,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202207030548363_ChangeNotification.resx">
       <DependentUpon>202207030548363_ChangeNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207052037020_renamedIsCancelled.resx">
+      <DependentUpon>202207052037020_renamedIsCancelled.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

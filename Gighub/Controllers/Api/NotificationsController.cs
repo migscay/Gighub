@@ -41,7 +41,7 @@ namespace Gighub.Controllers.Api
                     },
                     DateTime = n.Gig.DateTime,
                     Id = n.Gig.Id,
-                    IsCancelled = n.Gig.IsCancelled,
+                    IsCancelled = n.Gig.IsCanceled,
                     Venue = n.Gig.Venue
                 },
                 OriginalDateTime = n.OriginalDateTime,
