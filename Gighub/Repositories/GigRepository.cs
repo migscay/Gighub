@@ -8,7 +8,7 @@ using Gighub.Models;
 
 namespace Gighub.Repositories
 {
-    public class GigRepository
+    public class GigRepository : IGigRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -66,5 +66,9 @@ namespace Gighub.Repositories
                 .ToList();
         }
 
+        public void Add(Gig gig)
+        {
+            _context.Gigs.Add(gig);
+        }
     }
 }

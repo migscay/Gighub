@@ -4,23 +4,18 @@ using Microsoft.AspNet.Identity;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using Gighub.Persistence;
 using Gighub.Repositories;
 
 namespace Gighub.Controllers
 {
     public class GigsController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly GigRepository _gigRepository;
-        private readonly AttendanceRepository _attendanceRepository;
-        private readonly FollowingRepository _followingRepository;
-
+        private readonly IUnitOfWork _unitOfWork;
         public GigsController()
         {
-            _context = new ApplicationDbContext();
-            _gigRepository = new GigRepository(_context);
-            _attendanceRepository = new AttendanceRepository(_context);
-            _followingRepository = new FollowingRepository(_context);
+            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+
         }
 
         [Authorize]
@@ -28,7 +23,7 @@ namespace Gighub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gigs = _gigRepository.GetGigsByArtist(userId);
+            var gigs = _unitOfWork.Gigs.GetGigsByArtist(userId);
 
             return View(gigs);
         }
@@ -41,10 +36,10 @@ namespace Gighub.Controllers
 
             var viewModel = new GigsViewModel
             {
-                UpcomingGigs = _gigRepository.GetGigsUserAttending(userId),
+                UpcomingGigs = _unitOfWork.Gigs.GetGigsUserAttending(userId),
                 ShowActions = User.Identity.IsAuthenticated,
                 Heading = "Gigs I'm Attending",
-                Attendances = _attendanceRepository.GetFutureAttendances(userId)
+                Attendances = _unitOfWork.Attendances.GetFutureAttendances(userId)
                     .ToLookup(a => a.GigId)
             };
 
@@ -64,7 +59,7 @@ namespace Gighub.Controllers
         {
             var viewModel = new GigFormViewModel
             {
-                Genres = _context.Genres.ToList(),
+                Genres = new ApplicationDbContext().Genres.ToList(),
                 Heading = "Add a Gig"
             };
             return View("GigForm", viewModel);
@@ -75,7 +70,7 @@ namespace Gighub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gig = _gigRepository.GetGig(id);
+            var gig = _unitOfWork.Gigs.GetGig(id);
 
             if (gig == null)
                 return HttpNotFound();
@@ -85,7 +80,7 @@ namespace Gighub.Controllers
 
             var viewModel = new GigFormViewModel
             {
-                Genres = _context.Genres.ToList(),
+                Genres = new ApplicationDbContext().Genres.ToList(),
                 Id = gig.Id,
                 Date = gig.DateTime.ToString("d MMM yyyy"),
                 Time = gig.DateTime.ToString("HH:mm"),
@@ -104,7 +99,7 @@ namespace Gighub.Controllers
         {
             if (!ModelState.IsValid)
             {
-                viewModel.Genres = _context.Genres.ToList();
+                viewModel.Genres = new ApplicationDbContext().Genres.ToList();
                 return View("GigForm", viewModel);
             }
 
@@ -115,9 +110,10 @@ namespace Gighub.Controllers
                 GenreId = viewModel.Genre,
                 Venue = viewModel.Venue
             };
-            
-            _context.Gigs.Add(gig);
-            _context.SaveChanges();
+
+            _unitOfWork.Gigs.Add(gig);
+
+            _unitOfWork.Complete();
 
             return RedirectToAction("Mine", "Gigs");
         }
@@ -127,23 +123,23 @@ namespace Gighub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Update(GigFormViewModel viewModel)
         {
-
+            var context = new ApplicationDbContext();
             if (!ModelState.IsValid)
             {
-                viewModel.Genres = _context.Genres.ToList();
+                viewModel.Genres = context.Genres.ToList();
                 return View("GigForm", viewModel);
             }
 
             var userId = User.Identity.GetUserId();
 
-            var gig = _context.Gigs
+            var gig = context.Gigs
                 .Include(g => g.Attendances
                 .Select(a => a.Attendee))
                 .Single(g => g.Id == viewModel.Id && g.ArtistId == userId);
 
             gig.Modify(viewModel.GetDateTime(), viewModel.Genre, viewModel.Venue);
 
-            _context.SaveChanges();
+            _unitOfWork.Complete();
 
             return RedirectToAction("Mine", "Gigs");
         }
@@ -151,7 +147,7 @@ namespace Gighub.Controllers
 
         public ActionResult Details(int id)
         {
-            var gig = _gigRepository.GetGig(id);
+            var gig = _unitOfWork.Gigs.GetGig(id);
  
             if (gig == null)
                 return HttpNotFound();
@@ -162,9 +158,9 @@ namespace Gighub.Controllers
             {
                 var userId = User.Identity.GetUserId();
 
-                viewModel.IsAttending = _attendanceRepository.GetAttendance(gig.Id,userId) != null;
+                viewModel.IsAttending = _unitOfWork.Attendances.GetAttendance(gig.Id,userId) != null;
 
-                viewModel.IsFollowing = _followingRepository.GetFollwing(userId, gig.ArtistId) != null;
+                viewModel.IsFollowing = _unitOfWork.Followings.GetFollwing(userId, gig.ArtistId) != null;
 
             }
 
