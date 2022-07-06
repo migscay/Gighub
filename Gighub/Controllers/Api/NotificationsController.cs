@@ -2,8 +2,9 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using Gighub.Dtos;
-using Gighub.Models;
+using Gighub.Core.Dtos;
+using Gighub.Core.Models;
+using Gighub.Persistence;
 using Microsoft.AspNet.Identity;
 
 namespace Gighub.Controllers.Api
