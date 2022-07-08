@@ -1,34 +1,26 @@
-﻿using System;
-using System.Data.Entity;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Linq;
-using Gighub.Core.Models;
+using Gighub.Core;
 using Gighub.Core.ViewModels;
 using Gighub.Persistence;
-using Gighub.Persistence.Repositories;
 using Microsoft.AspNet.Identity;
 
 namespace Gighub.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        private readonly GigRepository _gigRepository;
-        private readonly AttendanceRepository _attendanceRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController()
+        public HomeController(UnitOfWork unitOfWork)
         {
-            _context = new ApplicationDbContext();
-            _gigRepository = new GigRepository(_context);
-            _attendanceRepository = new AttendanceRepository(_context);
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index(string query = null)
         {
-            var upcomingGigs = _gigRepository.GetFutureGigs(query);
+            var upcomingGigs = _unitOfWork.Gigs.GetFutureGigs(query);
 
-            var userId = User.Identity.GetUserId();
-            var attendances = _attendanceRepository.GetFutureAttendances(userId)
+            var attendances = _unitOfWork.Attendances.GetFutureAttendances(User.Identity.GetUserId()) 
                 .ToLookup(a => a.GigId);
 
             var viewModel = new GigsViewModel

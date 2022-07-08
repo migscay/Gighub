@@ -65,6 +65,13 @@ namespace Gighub.Persistence.Repositories
                 .ToList();
         }
 
+        public Gig GetGigWithAttendees(int gigId)
+        {
+            return _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .SingleOrDefault(g => g.Id == gigId);
+        }
+
         public void Add(Gig gig)
         {
             _context.Gigs.Add(gig);

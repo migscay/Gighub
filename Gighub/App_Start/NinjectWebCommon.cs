@@ -1,5 +1,3 @@
-using Gighub.Persistence;
-
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Gighub.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Gighub.App_Start.NinjectWebCommon), "Stop")]
 
@@ -12,8 +10,9 @@ namespace Gighub.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Web.Common.WebHost;
+
     using Ninject.Extensions.Conventions;
+
 
     public static class NinjectWebCommon 
     {
@@ -73,7 +72,6 @@ namespace Gighub.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
         }        
     }
 }

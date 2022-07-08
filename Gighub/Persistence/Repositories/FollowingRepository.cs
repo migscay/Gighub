@@ -13,10 +13,21 @@ namespace Gighub.Persistence.Repositories
             _context = context;
         }
 
-        public Following GetFollwing(string userId, string artistId)
+        public Following GetFollowing(string userId, string artistId)
         {
             return _context.Followings
                 .SingleOrDefault(f => f.FolloweeId == artistId && f.FollowerId == userId);
         }
+
+        public void Add(Following following)
+        {
+            _context.Followings.Add(following);
+        }
+
+        public void Remove(Following following)
+        {
+            _context.Followings.Remove(following);
+        }
+
     }
 }
