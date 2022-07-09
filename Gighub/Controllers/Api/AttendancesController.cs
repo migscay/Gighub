@@ -1,10 +1,8 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNet.Identity;
 using System.Web.Http;
 using Gighub.Core;
 using Gighub.Core.Dtos;
 using Gighub.Core.Models;
-using Gighub.Persistence;
-using Microsoft.AspNet.Identity;
 
 namespace Gighub.Controllers.Api
 {
@@ -13,7 +11,7 @@ namespace Gighub.Controllers.Api
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public AttendancesController(UnitOfWork unitOfWork)
+        public AttendancesController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -24,6 +22,7 @@ namespace Gighub.Controllers.Api
             var userId = User.Identity.GetUserId();
 
             var attendance = _unitOfWork.Attendances.GetAttendance(dto.GigId,userId);
+            
             if (attendance != null)
                 return BadRequest("The attendance already exists.");
 
