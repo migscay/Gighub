@@ -1,9 +1,8 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using Moq;
 
 namespace Gighub.Tests.Extensions
 {
@@ -13,15 +12,14 @@ namespace Gighub.Tests.Extensions
         {
             var data = source.AsQueryable();
 
+//            Console.WriteLine("Mockset before " + mockSet.Object.SqlQuery(SelectAll).ToString());
             mockSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+//            Console.WriteLine("Mockset after " + mockSet.Object.ToString());
 
-            
-            Console.WriteLine("mockSet " + mockSet.Object.ToString());
 
-            
         }
     }
 }

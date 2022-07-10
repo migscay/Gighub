@@ -18,7 +18,7 @@ namespace Gighub.Controllers
 
         public ActionResult Index(string query = null)
         {
-            var upcomingGigs = _unitOfWork.Gigs.GetFutureGigs(query);
+            var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(query);
 
             var attendances = _unitOfWork.Attendances.GetFutureAttendances(User.Identity.GetUserId()) 
                 .ToLookup(a => a.GigId);

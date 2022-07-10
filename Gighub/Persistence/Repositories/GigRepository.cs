@@ -24,7 +24,7 @@ namespace Gighub.Persistence.Repositories
                 .SingleOrDefault(g => g.Id == gigId);
 
         }
-        public IEnumerable<Gig> GetGigsByArtist(string artistId)
+        public IEnumerable<Gig> GetUpcomingGigsByArtist(string artistId)
         {
             return _context.Gigs
                 .Where(a => a.ArtistId == artistId && 
@@ -33,7 +33,7 @@ namespace Gighub.Persistence.Repositories
                 .ToList();
         }
 
-        public IEnumerable<Gig> GetFutureGigs(string query = null)
+        public IEnumerable<Gig> GetUpcomingGigs(string query = null)
         {
 
             var upcomingGigs = _context.Gigs
@@ -60,6 +60,7 @@ namespace Gighub.Persistence.Repositories
             return _context.Attendances
                 .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Gig)
+                .Where(g => g.DateTime > DateTime.Now)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
                 .ToList();

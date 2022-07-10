@@ -22,7 +22,7 @@ namespace Gighub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            var gigs = _unitOfWork.Gigs.GetGigsByArtist(userId);
+            var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(userId);
 
             return View(gigs);
         }

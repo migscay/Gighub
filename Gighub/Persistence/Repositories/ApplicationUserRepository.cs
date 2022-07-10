@@ -7,9 +7,9 @@ namespace Gighub.Persistence.Repositories
 {
     public class ApplicationUserRepository : IApplicationUserRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public ApplicationUserRepository(ApplicationDbContext context)
+        public ApplicationUserRepository(IApplicationDbContext context)
         {
             _context = context;
         }
