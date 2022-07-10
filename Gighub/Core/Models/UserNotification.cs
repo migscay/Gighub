@@ -6,7 +6,9 @@ namespace Gighub.Core.Models
 {
     public class UserNotification
     {
-        public string UserId { get; private set; }
+        //temporarily open set method for testing
+        //public string UserId { get; private set; }
+        public string UserId { get; set; }
 
         public int NotificationId { get; private set; }
 

@@ -17,6 +17,12 @@ namespace Gighub.Persistence.Repositories
 
         public IEnumerable<Notification> GetNewNotificationsFor(string userId)
         {
+            var notifications = _context.UserNotifications
+                .Where(un => un.UserId == userId && !un.IsRead)
+                .Select(un => un.Notification)
+                .Include(n => n.Gig.Artist)
+                .ToList();
+
             /*
             var notifications = _context.UserNotifications
                 .Where(un => un.UserId == userId)
@@ -24,12 +30,6 @@ namespace Gighub.Persistence.Repositories
                 .Include(n => n.Gig.Artist)
                 .ToList();
                 */
-
-            var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId)
-                .Select(un => un.Notification)
-                .Include(n => n.Gig.Artist)
-                .ToList();
 
             return notifications;
 

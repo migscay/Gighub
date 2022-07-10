@@ -12,13 +12,10 @@ namespace Gighub.Tests.Extensions
         {
             var data = source.AsQueryable();
 
-//            Console.WriteLine("Mockset before " + mockSet.Object.SqlQuery(SelectAll).ToString());
             mockSet.As<IQueryable<T>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<T>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<T>>().Setup(m => m.ElementType).Returns(data.ElementType);
             mockSet.As<IQueryable<T>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-//            Console.WriteLine("Mockset after " + mockSet.Object.ToString());
-
 
         }
     }

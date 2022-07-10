@@ -15,7 +15,7 @@ namespace GigHub.Tests.Persistence.Repositories
     {
         private NotificationRepository _repository;
         private Mock<DbSet<UserNotification>> _mockNotifications;
-        private Mock<DbSet<Notification>> _mockNotificationsN;
+        //private Mock<DbSet<Notification>> _mockNotificationsN;
 
         [TestInitialize]
         public void TestInitialize()
@@ -35,6 +35,7 @@ namespace GigHub.Tests.Persistence.Repositories
             var notification = Notification.GigCancelled(new Gig());
             var user = new ApplicationUser { Id = "1" };
             var userNotification = new UserNotification(user, notification);
+            userNotification.UserId = "1";
             userNotification.Read();
 
             _mockNotifications.SetSource(new[] { userNotification });
@@ -50,6 +51,7 @@ namespace GigHub.Tests.Persistence.Repositories
             var notification = Notification.GigCancelled(new Gig());
             var user = new ApplicationUser { Id = "1" };
             var userNotification = new UserNotification(user, notification);
+            userNotification.UserId = "1";
 
             _mockNotifications.SetSource(new[] { userNotification });
 
@@ -64,6 +66,7 @@ namespace GigHub.Tests.Persistence.Repositories
             var notification = Notification.GigCancelled(new Gig());
             var user = new ApplicationUser { Id = "1" };
             var userNotification = new UserNotification(user, notification);
+            userNotification.UserId = "1";
 
             _mockNotifications.SetSource(new[] { userNotification });
 
