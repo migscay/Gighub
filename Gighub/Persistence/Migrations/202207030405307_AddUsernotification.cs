@@ -7,6 +7,7 @@
     {
         public override void Up()
         {
+            /*
             CreateTable(
                     "dbo.Notifications",
                     c => new
@@ -35,6 +36,7 @@
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId)
                 .Index(t => t.NotificationId);
+        */
         }
     }
 }

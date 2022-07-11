@@ -7,8 +7,10 @@
     {
         public override void Up()
         {
+            /*
             AddColumn("dbo.Gigs", "IsCanceled", c => c.Boolean(nullable: false));
             DropColumn("dbo.Gigs", "IsCancelled");
+        */
         }
         
         public override void Down()
